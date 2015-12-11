@@ -5,7 +5,7 @@ React stateless functional components using ClojureScript.
 Minimal adapter, includes Hiccup style markup generation,
 `refunc.core/html` and render loop, `refunc.core/render!`.
 
-See `examples/todomvc/src/todomvc/core.cljs`.
+See [`examples/todomvc/src/todomvc/core.cljs`](https://github.com/hraberg/refunc/blob/master/examples/todomvc/src/todomvc/core.cljs).
 
 ## Setup
 
