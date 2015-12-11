@@ -1,8 +1,11 @@
 # refunc
 
-React stateless functional components for ClojureScript.
+React stateless functional components using ClojureScript.
 
-75 LOC adapter, including Hiccup style markup generation.
+Minimal adapter, includes Hiccup style markup generation,
+`refunc.core/html` and render loop, `refunc.core/render!`.
+
+See `examples/todomvc/src/todomvc/core.cljs`.
 
 ## Setup
 

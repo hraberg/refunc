@@ -1,5 +1,5 @@
 (defproject refunc "0.1.0-SNAPSHOT"
-  :description "React stateless functional components for ClojureScript."
+  :description "React stateless functional components using ClojureScript."
   :url "http://hraberg.github.io/refunc/"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
