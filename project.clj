@@ -9,12 +9,7 @@
                  [cljsjs/react "0.14.3-0"]
                  [cljsjs/react-dom "0.14.3-1"]]
 
-  :npm {:dependencies [[todomvc-common "^1.0.2"]
-                       [todomvc-app-css "^2.0.3"]]
-        :root "examples/todomvc/resources/public"}
-
-  :plugins [[lein-npm "0.6.1"]
-            [lein-cljsbuild "1.1.1"]
+  :plugins [[lein-cljsbuild "1.1.1"]
             [lein-figwheel "0.5.0-1"
              :exclusions [org.clojure/clojure
                           ring/ring-core
@@ -23,6 +18,10 @@
                           org.clojure/tools.reader]]]
 
   :profiles {:dev {:resource-paths ["examples/todomvc/resources"]
+                   :plugins [[lein-npm "0.6.1"]]
+                   :npm {:dependencies [[todomvc-common "^1.0.2"]
+                                        [todomvc-app-css "^2.0.3"]]
+                         :root "examples/todomvc/resources/public"}
                    :dependencies [[com.cemerick/piggieback "0.2.1"
                                    :exclude [org.clojure/clojurescript]]
                                   [org.clojure/tools.nrepl "0.2.12"]]
@@ -32,9 +31,10 @@
 
   :source-paths ["src"]
 
-  :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
+  :clean-targets ^{:protect false} ["target"
+                                    "examples/todomvc/resources/public/js/compiled"]
 
-  :cljsbuild {:builds [{:id "dev"
+  :cljsbuild {:builds [{:id "todomvc"
                         :source-paths ["src"  "examples/todomvc/src"]
                         :figwheel {:css-dirs ["examples/todomvc/resources/public/node_modules/todomvc-common"
                                               "examples/todomvc/resources/public/node_modules/todomvc-app-css"]}
@@ -42,7 +42,7 @@
                                    :asset-path "js/compiled/out"
                                    :output-to "examples/todomvc/resources/public/js/compiled/todomvc.js"
                                    :output-dir "examples/todomvc/resources/public/js/compiled/out"
-                                   :source-map-timestamp true }}]}
+                                   :source-map-timestamp true}}]}
 
   :figwheel {:nrepl-port 7888
              :nrepl-middleware [cider.nrepl/cider-middleware
