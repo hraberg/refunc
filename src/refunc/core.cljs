@@ -67,5 +67,5 @@
                   #(do (reset! tick-requested? false)
                        (render-once! node f state did-update)))))]
     (when (satisfies? IWatchable state)
-      (add-watch state :render tick))
+      (add-watch state ::render tick))
     (tick)))
