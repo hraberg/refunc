@@ -32,19 +32,18 @@
 
 (def KEYS {:enter 13 :esc 27})
 
-(defn todo-input [{:keys [onsave onstop value] :as props}]
-  (let [stop #(do (if onstop (onstop))
+(defn todo-input [{:keys [on-save on-stop] :as props}]
+  (let [stop #(do (if on-stop (on-stop))
                   (aset % "target" "value" ""))
         save #(let [v (aget % "target" "value")]
-                (if-not (empty? v) (onsave v))
+                (if-not (empty? v) (on-save v))
                 (stop %))
         keymap {(:enter KEYS) save
                 (:esc KEYS) stop}]
     (html
-     [:input (merge (select-keys props [:className :placeholder])
+     [:input (merge (select-keys props [:className :defaultValue :placeholder])
                     {:autofocus true
                      :onBlur save
-                     :defaultValue value
                      :onKeyDown #(some-> % .-which keymap (apply [%]))})])))
 
 (defn todo-stats [{:keys [active completed selected-filter]}]
@@ -74,11 +73,11 @@
     (when editing
       ^{:did-mount #(.focus %)}
       [todo-input {:className "edit"
-                   :value title
-                   :onsave #(save id %)
-                   :onstop stop-edit}])]))
+                   :defaultValue title
+                   :on-save #(save id %)
+                   :on-stop stop-edit}])]))
 
-(defn todo-app [{:keys [todos edited-todo selected-filter] :as app}]
+(defn todo-app [{:keys [todos edited-todo selected-filter]}]
   (let [items (vals todos)
         completed (->> items (filter :completed) count)
         active (- (count items) completed)]
@@ -89,7 +88,7 @@
         [:h1 "todos"]
         [todo-input {:className "new-todo"
                      :placeholder "What needs to be done?"
-                     :onsave add-todo}]]
+                     :on-save add-todo}]]
        (when (seq items)
          [:div
           [:section.main
