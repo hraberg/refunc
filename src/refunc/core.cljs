@@ -13,8 +13,7 @@
   [hiccup]
   (if (vector? hiccup)
     (let [[tag & [attributes & children :as all-children]] hiccup
-          component? (fn? tag)
-          [_ tag id class] (if component?
+          [_ tag id class] (if (fn? tag)
                              [nil tag]
                              (re-find re-tag (name tag)))
           [attributes children] (if ((some-fn map? object?) attributes)
