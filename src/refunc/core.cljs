@@ -65,11 +65,10 @@
   IWatchable. See render-once!"
   [node f & [state did-update]]
   (let [tick-requested? (atom false)
-        tick (fn []
-               (when (compare-and-set! tick-requested? false true)
-                 (js/requestAnimationFrame
-                  #(do (reset! tick-requested? false)
-                       (render-once! node f state did-update)))))]
-    (when (satisfies? IWatchable state)
-      (add-watch state ::render tick))
-    (tick)))
+        tick #(do (reset! tick-requested? false)
+                  (render-once! node f state did-update))
+        request-tick #(when (compare-and-set! tick-requested? false true)
+                        (js/requestAnimationFrame tick))]
+    (cond-> state
+      (satisfies? IWatchable state) (add-watch ::render request-tick))
+    (request-tick)))
