@@ -45,18 +45,23 @@
        not-found))))
 
 (defn render-once!
-  "Mount the stateless functional component f at node. Optional
-  did-update is called on frame completion."
+  "Mounts the stateless functional component f at node. Optional
+  did-update is called on frame completion.
+
+  Stateless functional components take 3 arguments:
+  props, context and updater."
   [node f & [state did-update]]
   (.render js/ReactDOM
            (cond-> f
-             (fn? f) (apply [(cond-> state
-                               (satisfies? IDeref state) deref)]))
+             (fn? f) (-> (vector (cond-> state
+                                   (satisfies? IDeref state) deref))
+                         html)
+             (vector? f) html)
            node
            did-update))
 
 (defn render!
-  "Mount the stateless functional component f at node. Will re-render
+  "Mounts the stateless functional component f at node. Will re-render
   using requestAnimationFrame on state changes if
   IWatchable. See render-once!"
   [node f & [state did-update]]
