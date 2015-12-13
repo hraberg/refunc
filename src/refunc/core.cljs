@@ -2,7 +2,7 @@
   (:require [clojure.string :as s]
             [cljsjs.react.dom]))
 
-;; From https://github.com/weavejester/hiccup/blob/master/src/hiccup/compiler.clj
+;; From https://github.com/weavejester/hiccup/blob/master/src/hiccup/compiler.clj (EPL)
 (def ^{:doc "Regular expression that parses a CSS-style id and class from an element name."
        :private true}
   re-tag #"([^\s\.#]+)(?:#([^\s\.#]+))?(?:\.([^\s#]+))?")

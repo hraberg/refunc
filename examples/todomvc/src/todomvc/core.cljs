@@ -2,7 +2,7 @@
   (:require [clojure.string :as s]
             [refunc.core :refer (html)]))
 
-;; Based on https://github.com/reagent-project/reagent/blob/master/examples/todomvc/src/todomvc/core.cljs
+;; Based on https://github.com/reagent-project/reagent/blob/master/examples/todomvc/src/todomvc/core.cljs (MIT)
 
 (enable-console-print!)
 
