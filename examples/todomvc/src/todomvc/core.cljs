@@ -1,10 +1,12 @@
 (ns todomvc.core
   (:require [clojure.string :as s]
+            [devtools.core :as devtools]
             [refunc.core :refer (html)]))
 
 ;; Based on https://github.com/reagent-project/reagent/blob/master/examples/todomvc/src/todomvc/core.cljs (MIT)
 
 (enable-console-print!)
+(devtools/install!)
 
 (def filters (array-map :all identity
                         :active (complement :completed)

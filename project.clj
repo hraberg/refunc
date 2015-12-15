@@ -24,7 +24,8 @@
                          :root "examples/todomvc/resources/public"}
                    :dependencies [[com.cemerick/piggieback "0.2.1"
                                    :exclude [org.clojure/clojurescript]]
-                                  [org.clojure/tools.nrepl "0.2.12"]]
+                                  [org.clojure/tools.nrepl "0.2.12"]
+                                  [binaryage/devtools "0.4.1"]]
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
 
   :pedantic? :abort
