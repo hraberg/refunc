@@ -10,7 +10,7 @@
                  [cljsjs/react-dom "0.14.3-1"]]
 
   :plugins [[lein-cljsbuild "1.1.1"]
-            [lein-figwheel "0.5.0-1"
+            [lein-figwheel "0.5.0-2"
              :exclusions [org.clojure/clojure
                           ring/ring-core
                           commons-fileupload
